@@ -5,55 +5,58 @@ import { getSearch } from 'myApi/api';
 import Home from 'components/Home';
 
 const MoviesPage = () => {
-  const [query, setQuery] = useState([]);
-  const [searchParam, setSearchParam] = useSearchParams();
-  const value = searchParam.get('search') || '';
+  const [query, setQuery] = useState('');
+  const [movies, setMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  
+  const handleChange = ({ target: { value } }) => {
+    if (!value) setSearchParams({});
+    setQuery(value);
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!query) return setSearchParams({});
+    setSearchParams({ search: query });
+  };
+
+
 
   useEffect(() => {
-    console.log('query', query);
+    const value = searchParams.get('search');
     if (value) {
-      setSearchParam({value});
-
+      setQuery(value);
       const fetchSearch = async () => {
         try {
           const arr = await getSearch(value);
-          setQuery(arr);
+          setMovies(arr);
         } catch (e) {
           console.log('warn: ' + e);
         }
       };
       fetchSearch();
     }
-  }, [query, setSearchParam,value]);
+  }, [searchParams]);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const targetValue = e.target[0].value;
-    // setQuery(targetValue);
-    setSearchParam({search:targetValue});
-  };
   return (
     <>
-    <Div>
-      <Form onSubmit={handleSubmit}>
-        <Label>
-          <Input
-            name="query"
-            type="text"
-            id="query"
-            placeholder="search"
-            required
-          />
-        </Label>
-        <Button type="submit">search 👆</Button>
-      </Form>
-    </Div>
-    <Home movies={query}/>
+      <Div>
+        <Form onSubmit={handleSubmit}>
+          <Label>
+            <Input
+              name="query"
+              type="text"
+              id="query"
+              placeholder="search"
+              value={query}
+              onChange={handleChange}
+              required
+            />
+          </Label>
+          <Button type="submit">search 👆</Button>
+        </Form>
+      </Div>
+      {movies.length > 0 && <Home movies={movies}  isMoviesPage={true}/>}
     </>
- 
-
   );
 };
 

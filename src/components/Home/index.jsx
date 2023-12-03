@@ -15,16 +15,17 @@ const NavLink = styled(BaseNavLink)`
   }
 `;
 
-const Home = ({ movies }) => {
-  console.log(movies);
+const Home = ({ movies, isMoviesPage }) => {
+  const str = isMoviesPage ? '' : 'movies/'
   const location = useLocation();
+
   return (
     <ul>
       {movies &&
         movies.map(el => {
           return (
             <Li key={el.id}>
-              <NavLink state={{ from: location }} to={`movies/${el.id}`}>            
+              <NavLink to={`${str}${el.id}`} state={{ from: location }} >            
                 {el.title}
               </NavLink>
             </Li>
