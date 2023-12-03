@@ -1,6 +1,6 @@
 import React from 'react';
-import { Div, DivBack, Img } from './MovieDetail.style';
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
+import { ButtonGoBack, Img, Label } from './MovieDetail.style';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const MovieDetails = ({
   movId: { poster_path, title, overview, genres, vote_average },
@@ -11,20 +11,17 @@ const MovieDetails = ({
 
   const genresStr = genres?.map(genre => genre.name).join(' ');
   const location = useLocation();
-  let loc = location.state
-  if(loc && loc.from){
-    
-    loc = '/'
-    console.log(loc)
-  }
+  const navigate = useNavigate();
+  const subLocation = location.state.from;
 
+  const onGoBack = () => navigate(location?.state?.from ?? '/');
   return (
     <>
- 
-      <DivBack>
-        <Link to={loc}>Go back</Link>
-      </DivBack>
-      <Div>
+      <ButtonGoBack type="button" onClick={onGoBack}>
+        <div />
+        <Label>Go back</Label>
+      </ButtonGoBack>
+      <div>
         <Img
           src={`${poster_path ? BASE_URL + poster_path : defaultImg}`}
           alt="get"
@@ -47,14 +44,18 @@ const MovieDetails = ({
             </p>
           </li>
         </ul>
-      </Div>
+      </div>
       <h2>Additional information</h2>
       <ul>
         <li>
-          <NavLink to="cast" state={{from:"cast"}}>Cast</NavLink>
+          <NavLink to="cast" state={{ from: subLocation }}>
+            Cast
+          </NavLink>
         </li>
         <li>
-          <NavLink to="reviews" state={{from:"reviews"}}>Reviews</NavLink>
+          <NavLink to="reviews" state={{ from: subLocation }}>
+            Reviews
+          </NavLink>
         </li>
       </ul>
       <Outlet />
