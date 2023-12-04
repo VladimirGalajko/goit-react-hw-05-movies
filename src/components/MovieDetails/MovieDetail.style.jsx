@@ -28,33 +28,27 @@ ul {
 `;
 
 export const Label = styled.span`
-  margin-left: 10px;
+margin-left:30px;
 `;
 
 export const ButtonGoBack = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 200px;
-  height: 40px;
-  margin-bottom: 30px;
-
-  font-size: 15px;
-  font-family: inherit;
-
-  background: linear-gradient(
-    141.22deg,
-    rgb(78, 74, 64) 9.4%,
-    rgb(180, 105, 90) 91.91%
-  );
-  color: #ff1f1f;
-  border: none;
-
+  position: relative;
+  padding: 10px;
+  font-size: 16px;
   cursor: pointer;
-
+  ::before {
+    content: '';
+  position: absolute;
+  top: 50%;
+  left: 5px; /* Расстояние от левого края до стрелки */
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+  border-right-color: #000; /* цвет стрелки */
+  transform: translateY(-50%);
+  }
   :hover {
-    background-color: #5ae619;
+    background-color: #dbe6d6;
 
   }
 `;

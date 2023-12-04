@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonGoBack, Img, Label } from './MovieDetail.style';
+import { ButtonGoBack, Div, Img, Label } from './MovieDetail.style';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const MovieDetails = ({
@@ -17,11 +17,11 @@ const MovieDetails = ({
   const onGoBack = () => navigate(location?.state?.from ?? '/');
   return (
     <>
-      <ButtonGoBack type="button" onClick={onGoBack}>
-        <div />
+      <ButtonGoBack type="button" onClick={onGoBack}>        
         <Label>Go back</Label>
       </ButtonGoBack>
-      <div>
+     
+      <Div>
         <Img
           src={`${poster_path ? BASE_URL + poster_path : defaultImg}`}
           alt="get"
@@ -44,7 +44,8 @@ const MovieDetails = ({
             </p>
           </li>
         </ul>
-      </div>
+      
+      </Div>
       <h2>Additional information</h2>
       <ul>
         <li>
