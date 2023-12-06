@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Button, Div, Form, Input, Label } from './MoviesPage.styled';
 import { useEffect, useState } from 'react';
 import { getSearch } from 'myApi/api';
-import Home from 'components/Movies';
+import MoviesList from 'components/MoviesList';
 
 const MoviesPage = () => {
   const [query, setQuery] = useState('');
@@ -55,7 +55,7 @@ const MoviesPage = () => {
           <Button type="submit">search 👆</Button>
         </Form>
       </Div>
-      {movies.length > 0 && <Home movies={movies}  isMoviesPage={true}/>}
+      {movies.length > 0 && <MoviesList movies={movies}  isMoviesPage={true}/>}
     </>
   );
 };

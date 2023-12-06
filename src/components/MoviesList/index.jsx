@@ -1,47 +1,38 @@
-
-
-import { StyledHeader, StyledLi, StyledNav, StyledUl } from './Header.styled';
-import { NavLink as BaseNavLink } from "react-router-dom";
+import { NavLink as BaseNavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import { Li } from './MoviesList.styled';
+
 const NavLink = styled(BaseNavLink)`
-display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  /* padding: 0 15px; */
-  list-style-type: none;
+  position: relative;
   text-decoration: none;
-  color: #8b9c94;
-  background-color: #635656;
-  padding: 4px;
-  transition: background-color 0.3s, color 0.3s;
-  border-radius:5px;
-
+  color: #714242;
+  transition: color 0.3s ease, font-size 0.3s ease, transform 0.3s ease;
   &:hover {
-    background-color: #8c7c7c;
-    color: #fff;
-  }
-
-  &.active {
-    color: #0afd5b;
-    background-color: #8c7c7c;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 18px;
+    transform: translateY(-3px);
   }
 `;
-const Header = () => {
-    return (
-      <StyledHeader>
-        <StyledNav>
-          <StyledUl>
-            <StyledLi>
-              <NavLink to="/" >Home</NavLink>
-            </StyledLi>
-            <StyledLi>
-              <NavLink to="/movies" >Movies</NavLink>
-            </StyledLi>
-          </StyledUl>
-        </StyledNav>
-      </StyledHeader>
-    );
-  };
 
-export default Header;
+const MoviesList = ({ movies, isMoviesPage }) => {
+  const str = isMoviesPage ? '' : 'movies/'
+  const location = useLocation();
+
+  return (
+    <ul>
+      {movies &&
+        movies.map(el => {
+          return (
+            <Li key={el.id}>
+              <NavLink to={`${str}${el.id}`} state={{ from: location }} >            
+                {el.title}
+              </NavLink>
+            </Li>
+          );
+        })}
+    </ul>
+  );
+};
+
+export default MoviesList;
