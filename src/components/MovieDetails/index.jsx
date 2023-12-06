@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonGoBack, Div, Img, Label } from './MovieDetail.style';
+import { AdditionalInfoContainer, ButtonGoBack, Div, Img, Label } from './MovieDetail.style';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const MovieDetails = ({
@@ -46,19 +46,21 @@ const MovieDetails = ({
         </ul>
       
       </Div>
+      <AdditionalInfoContainer>
       <h2>Additional information</h2>
       <ul>
         <li>
-          <NavLink to="cast" state={{ from: subLocation }}>
+          <NavLink to="cast" state={{ from: subLocation }} active="active">
             Cast
           </NavLink>
         </li>
         <li>
-          <NavLink to="reviews" state={{ from: subLocation }}>
+          <NavLink to="reviews" state={{ from: subLocation }} active="active">
             Reviews
           </NavLink>
         </li>
       </ul>
+      </AdditionalInfoContainer>
       <Outlet />
     </>
   );

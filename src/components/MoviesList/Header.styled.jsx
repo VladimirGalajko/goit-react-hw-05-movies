@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledHeader = styled.header`
   background-color: #333;
   color: #fff;
-  padding: 10px 20px;
+  padding: 20px 20px;
 `;
 
 export const StyledNav = styled.nav`

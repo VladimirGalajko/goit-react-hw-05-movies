@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Button, Div, Form, Input, Label } from './MoviesPage.styled';
 import { useEffect, useState } from 'react';
 import { getSearch } from 'myApi/api';
-import Home from 'components/Home';
+import Home from 'components/Movies';
 
 const MoviesPage = () => {
   const [query, setQuery] = useState('');

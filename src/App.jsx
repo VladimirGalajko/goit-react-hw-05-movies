@@ -1,11 +1,10 @@
-// import Layout from "Layout";
+
 import Layout from 'Layout';
 import { Route, Routes } from 'react-router-dom';
-
 import { Suspense, lazy } from 'react';
 
 
-const HomePage = lazy(() => import('./pages/HomePage'));
+const MoviesListPage = lazy(() => import('./pages/MoviesListPage'));
 const MoviesPage = lazy(() => import('./pages/MoviesPage'));
 const MovieDetailsPage = lazy(() => import('./pages/MovieDetailsPage'));
 const ActorsPage = lazy(() => import('./pages/ActorsPage'));
@@ -18,7 +17,7 @@ const App = () => {
       <Suspense fallback={<p>Loading component...</p>}>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<HomePage />} />
+            <Route index element={<MoviesListPage />} />
             <Route path="movies" element={<MoviesPage />} />
             <Route path="movies/:movId" element={<MovieDetailsPage />}>
               <Route path="cast" element={<ActorsPage />} />

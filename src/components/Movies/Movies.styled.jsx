@@ -18,6 +18,6 @@ export const Li = styled.li`
   /* cursor: pointer; */
 
   &:hover {
-    background-color: #a8a4a4; /* Цвет при наведении */
+    background-color: #a8a4a4;
   }
 `;

@@ -1,6 +1,6 @@
 
-import Header from 'components/Header'
-import Home from 'components/Home';
+
+import Home from 'components/Movies';
 import { getTrending } from 'myApi/api';
 import React, { useEffect, useState } from 'react'
 
@@ -13,7 +13,7 @@ const HomePage = () => {
 
     }, []);
 
-    <Header/>
+   
 	return (<Home movies={movies}/>)
 
 }

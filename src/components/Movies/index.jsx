@@ -1,6 +1,6 @@
 import { NavLink as BaseNavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { Li } from './Home.styled';
+import { Li } from './Movies.styled';
 
 const NavLink = styled(BaseNavLink)`
   position: relative;
